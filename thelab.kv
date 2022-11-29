@@ -1,0 +1,135 @@
+ImageExample:
+
+
+<ImageExample@GridLayout>:
+    cols:3
+    Image:
+        source:'images/cake.jpg'
+    Image:
+        source:'images/cake.jpg'
+        allow_stretch:True
+    Image:
+        source:'images/cake.jpg'
+        allow_stretch: True
+        keep_ratio: False
+<WidgetExample@GridLayout>:
+    cols:3
+    ToggleButton:
+        text:"OFF"
+        on_state:root.on_toggle_button_state(self)
+        size_hint:None,1
+        width:"100dp"
+    Button:
+        text:"Click Here"
+        on_press:root.on_button_click()
+        disabled:not root.count_enabled
+    Label: 
+        text:root.my_text
+        font_name:'fonts/Lcd.ttf'
+        font_size :'80dp'
+        color: .5, .6 , 1 , .9
+    Switch:
+        id:my_switch
+        # on_active:root.on_switch_active(self)
+        size_hint:None,1
+        active:True
+        width:"100dp"
+    Slider:
+        id: my_slider
+        disabled : not my_switch.active
+        min: 0
+        max: 100
+        # on_value:root.on_slider_value(self)
+        orientation:"vertical"
+        value:10
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            text:str(int(my_slider.value))
+        ProgressBar:
+            max:100
+            value:my_slider.value
+    TextInput:
+        id:my_text_input
+        size_hint:None,1
+        width:"100dp"
+        text:"Fool"
+        multiline:False
+        on_text_validate: root.on_text_validate(self)
+    Label:
+        text:"Your Name is : " + root.text_input_str
+
+<PageLayoutExample@PageLayout>:
+    ScrollViewExample:
+    StackLayoutExample:
+    GridLayoutExample:
+    AnchorLayoutExample:
+    BoxLayoutExample:
+
+
+<ScrollViewExample@ScrollView>:
+    StackLayoutExample:  
+        size_hint : 1, None
+        height : self.minimum_height
+
+<StackLayoutExample>:
+    #orientation : 'rl-tb'
+    padding : ('20dp','20dp','20dp','20dp') ## -> left top right bottom
+    spacing : "20dp" , "10dp" ## horizontal,vertical spacing
+<GridLayoutExample@GridLayout>:
+    cols:3
+    Button:
+        text:'A'
+    Button:
+        text:'B'
+    BoxLayoutExample:
+    Button:
+        text:'D'
+    Button:
+        text:'E'
+    Button:
+        text:'F'
+
+<AnchorLayoutExample>:
+    # anchor_x:'right'
+    anchor_y:'top'
+    BoxLayout:
+        size_hint: .3, .3
+        Button: 
+            text:'A'
+            color:'white'
+            # size_hint:.5 ,.5
+        Button: 
+            text:'B'
+            color:'white'
+            # size_hint:.5 ,.5
+
+
+<BoxLayoutExample>:
+    orientation:'vertical'
+    Button: 
+        text:'A'
+        color:'white'
+        # size: "40dp", "40dp"
+        # height: "40dp"
+        # width: "60dp"
+        # x , center_x , right
+        size_hint: .8 , .5
+        pos_hint : {"x" : .1}  # 10 % rightwards in x direction
+    Button: 
+        text:'B'
+        color:'white'
+        size: "40dp", "40dp"
+        size_hint: None , None
+    Button: 
+        text:'C'
+        color:'white'
+    Button: 
+        text:'D'
+        color:'white'
+
+
+<MainWidget>:
+    Button:
+        text:'Hello'
+        color:'white'
